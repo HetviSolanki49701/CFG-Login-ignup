@@ -103,7 +103,7 @@ const Register = () => {
                 className="form-control"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Your password"
+                placeholder="Your password here"
               />
             </div>
 
