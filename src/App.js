@@ -1,11 +1,23 @@
-import React from "react";
+// import logo from './logo.svg';
 
-const App = () => {
+import './App.css';
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from 'react-router-dom';
+import Register from './components/auth/Register';
+import Login from './components/auth/Login';
+function App() {
   return (
-    <div className="App">
-      <h1>CFG LOGIN SIGNUP</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        {/* <Route path="/quiz" element={<Quiz/>} /> */}
+        <Route path="/login" element={<Login/>} />
+        <Route path="/register" element={<Register/>} />
+        </Routes>
+    </BrowserRouter>
   );
-};
+}
 
 export default App;
