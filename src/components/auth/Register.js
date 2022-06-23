@@ -23,7 +23,7 @@ const Register = () => {
     <div className="container p-5">
       <div className="row">
         <div className="col-md-6 offset-md-3">
-          <form action="" onSubmit={handleSubmit}>
+          <form action="/register" onSubmit={handleSubmit} method="POST">
             <h2>Register</h2>
             <div className="form-group">
               <input
