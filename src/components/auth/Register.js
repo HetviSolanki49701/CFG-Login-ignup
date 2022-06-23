@@ -27,7 +27,8 @@ const Register = () => {
             <h2>Register</h2>
             <div className="form-group">
               <input
-                type="name"
+                type="text"
+                name="firstname"
                 className="form-control"
                 value={fname}
                 onChange={(e) => setFName(e.target.value)}
@@ -38,7 +39,8 @@ const Register = () => {
 
             <div className="form-group">
               <input
-                type="name"
+                type="text"
+                name="lastname"
                 className="form-control"
                 value={lname}
                 onChange={(e) => setLName(e.target.value)}
@@ -49,7 +51,8 @@ const Register = () => {
 
             <div className="form-group">
               <input
-                type="number"
+                type="text"
+                name="phone"
                 className="form-control"
                 value={num}
                 onChange={(e) => setNum(e.target.value)}
@@ -69,7 +72,7 @@ const Register = () => {
                 value="option1"
                 checked
               />
-              <label class="form-check-label" for="exampleRadios1">
+              <label class="form-check-label" htmlFor="exampleRadios1">
                 Male 
               </label>
             </div>
@@ -81,14 +84,15 @@ const Register = () => {
                 id="exampleRadios2"
                 value="option2"
               />
-              <label class="form-check-label" for="exampleRadios2">
+              <label class="form-check-label" htmlFor="exampleRadios2">
                 Female
               </label>
             </div>
 
             <div className="form-group">
               <input
-                type="email"
+                type="text"
+                name="email"
                 className="form-control"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -100,6 +104,7 @@ const Register = () => {
             <div className="form-group">
               <input
                 type="password"
+                name="password"
                 className="form-control"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -110,6 +115,7 @@ const Register = () => {
             <div className="form-group">
               <input
                 type="password"
+                name="confirmpassword"
                 className="form-control"
                 // value={password}
                 // onChange={(e) => setPassword(e.target.value)}
