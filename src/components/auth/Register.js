@@ -24,7 +24,7 @@ const Register = () => {
       <div className="row">
         <div className="col-md-6 offset-md-3">
           <form action="" onSubmit={handleSubmit}>
-            <h2>Register here</h2>
+            <h2>Register here on our app</h2>
             <div className="form-group">
               <input
                 type="name"
@@ -70,7 +70,7 @@ const Register = () => {
                 checked
               />
               <label class="form-check-label" for="exampleRadios1">
-                Male
+                Male 
               </label>
             </div>
             <div class="form-check">
