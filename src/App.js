@@ -1,12 +1,14 @@
-export default App;
+
 import React, { Component } from 'react';
 import Login from './components/login/Login';
+import Navbar from './components/navbar';
 
 class App extends Component {
 	render() {
 		return (
 			<div className="App">
-       <h1>CFG LOGIN SIGNUP</h1>
+				<Navbar/>
+       			<h1>CFG LOGIN SIGNUP</h1>
 				<Login />
 			</div>
 		);

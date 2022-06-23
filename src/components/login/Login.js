@@ -1,105 +1,67 @@
-import React, { Component } from "react";
-import { Row, FormGroup, FormControl, ControlLabel, Button, HelpBlock } from 'react-bootstrap';
-import './login.sass';
-import { isEmail, isEmpty, isLength, isContainWhiteSpace } from 'shared/validator';
+import {useState} from "react";
+// import {login} from "../api/auth";
+import './login.css'
+import {useForm} from 'react-hook-form'
 
-class Login extends Component {
+const Login = () => {
+  const [email, setEmail] = useState("sss@gmail.com");
+  const [password, setPassword] = useState("ss@3");
+  const {register, handleSubmit, formState: {errors}} = useForm()
+  const Submit = async (e) => {
+    // e.preventDefault();
+    // try {
+    //   login({email,password})
+    //     .then((res) => {})
+    //     .catch((err) => console.log(err));
+    // } catch (error) {
+    //   console.log(error);
+    // }
+    console.log(e);
+  };
 
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            formData: {}, // Contains login form data
-            errors: {}, // Contains login field errors
-            formSubmitted: false, // Indicates submit status of login form
-            loading: false // Indicates in progress state of login form
-        }
-    }
-
-    handleInputChange = (event) => {
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
-
-        let { formData } = this.state;
-        formData[name] = value;
-
-        this.setState({
-            formData: formData
-        });
-    }
-
-    validateLoginForm = (e) => {
-
-        let errors = {};
-        const { formData } = this.state;
-
-        if (isEmpty(formData.email)) {
-            errors.email = "Email can't be blank";
-        } else if (!isEmail(formData.email)) {
-            errors.email = "Please enter a valid email";
-        }
-
-        if (isEmpty(formData.password)) {
-            errors.password = "Password can't be blank";
-        }  else if (isContainWhiteSpace(formData.password)) {
-            errors.password = "Password should not contain white spaces";
-        } else if (!isLength(formData.password, { gte: 6, lte: 16, trim: true })) {
-            errors.password = "Password's length must between 6 to 16";
-        }
-
-        if (isEmpty(errors)) {
-            return true;
-        } else {
-            return errors;
-        }
-    }
-
-    login = (e) => {
-
-        e.preventDefault();
-
-        let errors = this.validateLoginForm();
-
-        if(errors === true){
-            alert("You are successfully signed in...");
-            window.location.reload()
-        } else {
-            this.setState({
-                errors: errors,
-                formSubmitted: true
-            });
-        }
-    }
-
-    render() {
-
-        const { errors, formSubmitted } = this.state;
-
-        return (
-            <div className="Login">
-                <Row>
-                    <form onSubmit={this.login}>
-                        <FormGroup controlId="email" validationState={ formSubmitted ? (errors.email ? 'error' : 'success') : null }>
-                            <ControlLabel>Email</ControlLabel>
-                            <FormControl type="text" name="email" placeholder="Enter your email" onChange={this.handleInputChange} />
-                        { errors.email &&
-                            <HelpBlock>{errors.email}</HelpBlock>
-                        }
-                        </FormGroup>
-                        <FormGroup controlId="password" validationState={ formSubmitted ? (errors.password ? 'error' : 'success') : null }>
-                            <ControlLabel>Password</ControlLabel>
-                            <FormControl type="password" name="password" placeholder="Enter your password" onChange={this.handleInputChange} />
-                        { errors.password &&
-                            <HelpBlock>{errors.password}</HelpBlock>
-                        }
-                        </FormGroup>
-                        <Button type="submit" bsStyle="primary">Sign-In</Button>
-                    </form>
-                </Row>
+  return (
+    <div className="container p-5" style={{justifyContent:"center",}}>
+      <div className="row">
+        <div className="col-md-6 offset-md-3">
+          <form onSubmit={handleSubmit(Submit)}>
+          <h2>Login</h2>
+            <div className="form-group mb-4">
+              <input
+                type="email"
+                className="form-control w-75"
+                //value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Your email"
+                autoFocus
+                {...register("email", {required:true})}
+              />
             </div>
-        )
-    }
-}
+
+            <div className="form-group mb-3">
+              <input
+                type="password"
+                className="form-control w-75"
+                //value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Your password"
+                {...register("password", {required:true})}
+              />
+            </div>
+
+            <br />
+            <button
+              onClick={handleSubmit}
+              type="primary"
+              className="mb-3 btn btn-primary"
+            >
+              Login with Email/Password
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    // <>dfdgdfgrg</>
+  );
+};
 
 export default Login;
