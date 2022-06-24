@@ -5,7 +5,9 @@ import NavScrollExample from './components/Navbar';
 import Login from './components/Login';
 import {Routes, Route } from 'react-router-dom';
 import About from './components/About';
+import Register from './components/Register'
 import Home from './components/Home';
+import Adminlogin from './components/Adminlogin'
 
 function App() {
   return (
@@ -14,8 +16,10 @@ function App() {
          <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/slogin" element={<Login/>}/>
-        <Route path="/alogin" element={<Login/>}/>
+        <Route path="/alogin" element={<Adminlogin/>}/>
         <Route path="/aboutus" element={<About/>}/>
+        <Route path="/register" element={<Register/>}/>
+
       
         </Routes>
        
