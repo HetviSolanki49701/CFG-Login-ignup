@@ -1,37 +1,46 @@
 import { useState } from "react";
+import {useNavigate} from 'react-router-dom';
+const path=require('path')
 // import {register} from "../api/auth"
 
 const Register = () => {
-  const [fname, setFName] = useState()
-  const [lname, setLName] = useState()
-  const [email, setEmail] = useState();
-  const [num, setNum] = useState();
-  const [password, setPassword] = useState("");
-
+  const [credentials, setCredentials] = useState({firstname:"", lastname:"", phone:"", email:"", password:"" })
+  let navigate = useNavigate()
   const handleSubmit = async (e) => {
-    // e.preventDefault();
-    // try {
-    //     register({email,password,referral})
-    //       .then((res) => {})
-    //       .catch((err) => console.log(err));
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
+    e.preventDefault()
+    const {firstname, lastname, phone, email, password } = credentials
+    const appPath=path.join(__dirname,'./app.js')
+    const response = await fetch ("/register", {
+      method: "POST",
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({firstname, lastname, phone, email, password})
+    })
+    const json = await response.json()
+    console.log(json);
+    localStorage.setItem('token', json.authtoken)
+    navigate.push("/")
+
   };
+
+  const onChange = (e) => {
+    setCredentials({...credentials, [e.target.name]: [e.target.value]})
+  }
 
   return (
     <div className="container p-5">
       <div className="row">
         <div className="col-md-6 offset-md-3">
-          <form action="/register" onSubmit={handleSubmit} method="POST">
+          <form action="" onSubmit={handleSubmit}>
             <h2>Register</h2>
             <div className="form-group">
               <input
                 type="text"
                 name="firstname"
                 className="form-control"
-                value={fname}
-                onChange={(e) => setFName(e.target.value)}
+                // value={fname}
+                onChange={onChange}
                 placeholder="Your first name"
                 autoFocus
               />
@@ -42,8 +51,8 @@ const Register = () => {
                 type="text"
                 name="lastname"
                 className="form-control"
-                value={lname}
-                onChange={(e) => setLName(e.target.value)}
+                // value={lname}
+                onChange={onChange}
                 placeholder="Your last name"
                 autoFocus
               />
@@ -54,8 +63,8 @@ const Register = () => {
                 type="text"
                 name="phone"
                 className="form-control"
-                value={num}
-                onChange={(e) => setNum(e.target.value)}
+                // value={num}
+                onChange={onChange}
                 placeholder="Your Mobile number"
                 autoFocus
               />
@@ -63,28 +72,28 @@ const Register = () => {
 
             
             Gender:
-            <div class="form-check">
+            <div className="form-check">
               <input
-                class="form-check-input"
+                className="form-check-input"
                 type="radio"
                 name="exampleRadios"
                 id="exampleRadios1"
                 value="option1"
                 checked
               />
-              <label class="form-check-label" htmlFor="exampleRadios1">
+              <label className="form-check-label" htmlFor="exampleRadios1">
                 Male 
               </label>
             </div>
-            <div class="form-check">
+            <div className="form-check">
               <input
-                class="form-check-input"
+                className="form-check-input"
                 type="radio"
                 name="exampleRadios"
                 id="exampleRadios2"
                 value="option2"
               />
-              <label class="form-check-label" htmlFor="exampleRadios2">
+              <label className="form-check-label" htmlFor="exampleRadios2">
                 Female
               </label>
             </div>
@@ -94,8 +103,8 @@ const Register = () => {
                 type="text"
                 name="email"
                 className="form-control"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                // value={email}
+                onChange={onChange}
                 placeholder="Your email"
                 autoFocus
               />
@@ -106,8 +115,8 @@ const Register = () => {
                 type="password"
                 name="password"
                 className="form-control"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                // value={password}
+                onChange={onChange}
                 placeholder="Your password here"
               />
             </div>

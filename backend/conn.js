@@ -3,12 +3,13 @@ const validator=require("validator")
 // const bcrypt=require('bcryptjs')
 // const jwt=require('jsonwebtoken')
 
-mongoose.connect('mongodb+srv://jay123:1234@cluster0.gk7oxgk.mongodb.net/CFG?retryWrites=true&w=majority')
-.then(()=>{
-    console.log('Connection succesful');
-}).catch((e)=>{
-    console.log(e);
-})
+// mongoose.connect('mongodb+srv://jay123:1234@cluster0.gk7oxgk.mongodb.net/CFG?retryWrites=true&w=majority')
+// .then(()=>{
+//     console.log('Connection succesful');
+// }).catch((e)=>{
+//     console.log(e);
+// })
+
 
 
 
@@ -21,48 +22,48 @@ const registerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  email: {
-    type: String,
-    required: true,
-    unique:true,  
-  },
-  gender: {
-    type: String,
-    required: true,
-    validate(value){
-        if(!validator.isEmail(value)){
-            throw new Error("Email is Invalid")
-        }
-    }
-  },
+//   gender: {
+//       type: String,
+//       required: true,
+//       validate(value){
+//           if(!validator.isEmail(value)){
+//               throw new Error("Email is Invalid")
+//             }
+//     }
+//   },
   phone: {
     type: Number,
     required: true,
     unique:true
-  },
-  age: {
-    type: Number,
-    required: true,
-  },
+},
+email: {
+  type: String,
+  required: true,
+  unique:true,  
+},
+//   age: {
+//     type: Number,
+//     required: true,
+//   },
   password: {
     type: String,
-    required: true,
-    validate(value){
-        if(!validator.isStrongPassword(value)){
-            throw new Error("Password you have entered is not strong enough")
-        }
-    }
+    required: true
+    // validate(value){
+    //     if(!validator.isStrongPassword(value)){
+    //         throw new Error("Password you have entered is not strong enough")
+    //     }
+    // }
   },
-  confirmpassword: {
-    type: String,
-    required: true,
-  },
-  tokens:[{
-    token:{
-      type:String,
-      required:true
-    }
-  }]
+//   confirmpassword: {
+//     type: String,
+//     required: true,
+//   },
+//   tokens:[{
+//     token:{
+//       type:String,
+//       required:true
+//     }
+//   }]
 });
 
 
